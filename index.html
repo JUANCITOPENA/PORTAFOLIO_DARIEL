@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dariel A. Peña Vásquez - Portafolio de Analista de Datos</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    
+    <!-- Link to your external CSS file -->
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body class="animated-gradient-bg">
+
+    <!-- Video Background -->
+    <div class="fixed top-0 left-0 w-full h-full z-[-1] overflow-hidden">
+        <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-10">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-futuristic-plexus-of-points-and-lines-in-motion-43553-large.mp4" type="video/mp4">
+            Tu navegador no soporta videos HTML5.
+        </video>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header class="bg-black/30 backdrop-blur-sm sticky top-0 z-50 transition-all duration-300" id="main-header">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <img src="http://localhost:5173/assets/dariel.PNG" alt="Foto de Dariel A. Peña Vásquez" class="w-12 h-12 rounded-full border-2 border-cyan-400">
+                <h1 class="text-xl font-bold text-white tracking-wider">Dariel A. Peña Vásquez</h1>
+            </div>
+            <div class="hidden md:flex items-center space-x-8 text-sm">
+                <a href="#about" class="hover:text-cyan-400 transition duration-300">👨‍💻 Sobre Mí</a>
+                <a href="#skills" class="hover:text-cyan-400 transition duration-300">⚙️ Habilidades</a>
+                <a href="#projects" class="hover:text-cyan-400 transition duration-300">💡 Proyectos</a>
+                <a href="#certificates" class="hover:text-cyan-400 transition duration-300">🎓 Certificaciones</a>
+                <a href="#contact" class="hover:text-cyan-400 transition duration-300">📬 Contacto</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-white focus:outline-none">
+                    <i class="fas fa-bars fa-lg"></i>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-black/50">
+            <a href="#about" class="block py-2 px-6 text-center hover:bg-cyan-500/20">Sobre Mí</a>
+            <a href="#skills" class="block py-2 px-6 text-center hover:bg-cyan-500/20">Habilidades</a>
+            <a href="#projects" class="block py-2 px-6 text-center hover:bg-cyan-500/20">Proyectos</a>
+            <a href="#certificates" class="block py-2 px-6 text-center hover:bg-cyan-500/20">Certificaciones</a>
+            <a href="#contact" class="block py-2 px-6 text-center hover:bg-cyan-500/20">Contacto</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6"> <!-- Removed py-12 from main, will add to sections or dividers -->
+
+        <!-- About Me Section -->
+        <section id="about" class="min-h-screen flex items-center justify-center py-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+                <div class="md:col-span-1 flex justify-center animate-in">
+                    <div class="relative profile-image-wrapper">
+                        <img src="http://localhost:5173/assets/dariel.PNG"
+                             alt="Foto profesional de Dariel"
+                             class="profile-image w-60 h-72 object-cover">
+                    </div>
+                </div>
+                <div class="md:col-span-2 text-center md:text-left animate-in">
+                    <h2
+                        class="text-4xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500">
+                        ¡Hola! Soy Dariel Peña</h2>
+                    <p class="text-lg text-gray-300 leading-relaxed">
+                        Ingeniero en Sistemas y Computación de la Universidad Dominicana OYM, apasionado por transformar datos
+                        crudos en insights accionables. Con certificaciones y diplomados del ITLA en <strong>Business Intelligence With Power BI, Análisis de Datos,
+                             Ciencias de datos para alta Gerencia, entro otros mas</strong>, Mi objetivo es ayudar a las organizaciones a tomar decisiones más
+                        inteligentes a través del poder de los datos.
+                    </p>
+                    <div class="mt-8 flex justify-center md:justify-start space-x-6">
+                        <a href="https://www.linkedin.com/in/dariel-a-pe%C3%B1a-v%C3%A1squez-863a35233/" target="_blank" 
+                            class="text-gray-400 hover:text-cyan-400 transition transform hover:scale-125"
+                            data-tooltip="LinkedIn"><i class="fab fa-linkedin fa-2x"></i></a>
+                        <a href="https://github.com/DARIELADOLFO" target="_blank"
+                            class="text-gray-400 hover:text-purple-400 transition transform hover:scale-125"
+                            data-tooltip="GitHub"><i class="fab fa-github fa-2x"></i></a>
+                        <a href="mailto:darielpena2000@gmail.com"
+                            class="text-gray-400 hover:text-red-400 transition transform hover:scale-125"
+                            data-tooltip="Email"><i class="fas fa-envelope fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="animated-section-divider"></div>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20">
+            <div class="section-title text-center mb-16 animate-in">
+                <h2 class="text-4xl font-extrabold">⚙️ Habilidades y Tecnologías</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="animate-in">
+                    <canvas id="skillsChart"></canvas>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 animate-in"> 
+                    <div class="flip-card h-40">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front flex flex-col items-center justify-center p-4">
+                                <i class="fas fa-file-excel fa-3x text-green-400 mb-2"></i>
+                                <h3 class="font-bold text-lg text-center">Excel Avanzado</h3>
+                            </div>
+                            <div class="flip-card-back flex items-center justify-center p-4 text-center">
+                                <p class="text-sm">Tablas Dinámicas, Fórmulas, Power Query, VBA.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card h-40">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front flex flex-col items-center justify-center p-4">
+                                <i class="fas fa-database fa-3x text-blue-400 mb-2"></i>
+                                <h3 class="font-bold text-lg text-center">SQL</h3>
+                            </div>
+                            <div class="flip-card-back flex items-center justify-center p-4 text-center">
+                                <p class="text-sm">Queries Complejas, Stored Procedures, Modelado.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card h-40">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front flex flex-col items-center justify-center p-4">
+                                <i class="fas fa-chart-bar fa-3x text-yellow-400 mb-2"></i>
+                                <h3 class="font-bold text-lg text-center">Power BI</h3>
+                            </div>
+                            <div class="flip-card-back flex items-center justify-center p-4 text-center">
+                                <p class="text-sm">Dashboards, DAX, Power Query, Visualización.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card h-40">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front flex flex-col items-center justify-center p-4">
+                                <i class="fab fa-python fa-3x text-cyan-400 mb-2"></i>
+                                <h3 class="font-bold text-lg text-center">Python</h3>
+                            </div>
+                            <div class="flip-card-back flex items-center justify-center p-4 text-center">
+                                <p class="text-sm">Pandas, NumPy, Matplotlib, Scikit-learn.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="flip-card h-40">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front flex flex-col items-center justify-center p-4">
+                                <i class="fas fa-project-diagram fa-3x text-purple-400 mb-2"></i>
+                                <h3 class="font-bold text-lg text-center">Gestión Proyectos</h3>
+                            </div>
+                            <div class="flip-card-back flex items-center justify-center p-4 text-center">
+                                <p class="text-sm">Ágiles (Scrum), PMI, Planificación, Seguimiento.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card h-40">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front flex flex-col items-center justify-center p-4">
+                                 <i class="fas fa-brain fa-3x text-orange-400 mb-2"></i>
+                                <h3 class="font-bold text-lg text-center">Business Intel.</h3>
+                            </div>
+                            <div class="flip-card-back flex items-center justify-center p-4 text-center">
+                                <p class="text-sm">KPIs, Reporting, Dashboards Estratégicos, ETL.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="animated-section-divider"></div>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20">
+            <div class="section-title text-center mb-16 animate-in">
+                <h2 class="text-4xl font-extrabold">💡 Proyectos Destacados</h2>
+            </div>
+            <div id="projects-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project cards will be injected here by JavaScript -->
+            </div>
+            <div id="projects-navigation" class="flex justify-center items-center mt-12 space-x-4">
+                <!-- Navigation buttons will be injected here -->
+            </div>
+        </section>
+        
+        <div class="animated-section-divider"></div>
+
+        <!-- Certificates Section -->
+        <section id="certificates" class="py-20">
+            <div class="section-title text-center mb-16 animate-in">
+                <h2 class="text-4xl font-extrabold">🎓 Certificaciones y Diplomas</h2>
+            </div>
+            <div id="certificates-accordion" class="space-y-4 max-w-4xl mx-auto animate-in">
+                <!-- Accordion items will be injected here by JavaScript -->
+            </div>
+        </section>
+
+        <div class="animated-section-divider"></div>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20">
+            <div class="section-title text-center mb-16 animate-in">
+                <h2 class="text-4xl font-extrabold">📬 Contacto</h2>
+            </div>
+            <div class="max-w-2xl mx-auto bg-gray-800/50 backdrop-blur-sm p-8 rounded-lg border border-gray-700 shadow-xl animate-in">
+                <form id="contact-form">
+                    <div class="mb-6">
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-300">Nombre</label>
+                        <input type="text" id="name" name="name" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5 transition" required>
+                        <p class="text-red-500 text-xs mt-1 hidden" id="name-error"></p> 
+                    </div>
+                    <div class="mb-6">
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-300">Email</label>
+                        <input type="email" id="email" name="email" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5 transition" required>
+                        <p class="text-red-500 text-xs mt-1 hidden" id="email-error"></p>
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block mb-2 text-sm font-medium text-gray-300">Mensaje</label>
+                        <textarea id="message" name="message" rows="4" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5 transition" required></textarea>
+                        <p class="text-red-500 text-xs mt-1 hidden" id="message-error"></p>
+                    </div>
+                    <button type="submit" class="w-full text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-transform transform hover:scale-105">Enviar Mensaje</button>
+                </form>
+                <p id="form-status" class="mt-4 text-center text-sm"></p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black/30 backdrop-blur-sm border-t border-gray-800 mt-12">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
+            <div class="mb-4 flex justify-center space-x-6">
+                 <a href="https://www.linkedin.com/in/dariel-a-pe%C3%B1a-v%C3%A1squez-863a35233/" target="_blank" class="hover:text-cyan-400 transition transform hover:scale-125"><i class="fab fa-linkedin fa-2x"></i></a>
+                 <a href="https://github.com/DARIELADOLFO" target="_blank" class="hover:text-purple-400 transition transform hover:scale-125"><i class="fab fa-github fa-2x"></i></a>
+                 <a href="mailto:darielpena2000@gmail.com" class="hover:text-red-400 transition transform hover:scale-125"><i class="fas fa-envelope fa-2x"></i></a>
+            </div>
+            <p>© <span id="current-year"></span> Dariel A. Peña Vásquez. Todos los derechos reservados.</p>
+            <p class="text-sm mt-2">Diseñado con ❤️ y datos.</p>
+        </div>
+    </footer>
+
+    <!-- Modal Structure -->
+    <div id="image-modal" class="modal fixed inset-0 bg-black/80 z-[60] flex items-center justify-center p-4 invisible opacity-0">
+        <div class="modal-content bg-gray-900 rounded-lg shadow-2xl relative w-full transform scale-95"> <!-- Removed max-w-4xl max-h-full overflow-auto to let CSS control -->
+            <button id="modal-close-btn" class="absolute top-2 right-4 text-white text-3xl hover:text-gray-400 transition z-10">×</button>
+            <img id="modal-image" src="" alt="Vista previa" class="w-full h-auto rounded-lg p-1">
+        </div>
+    </div>
+    
+    <!-- Help Button -->
+    <button id="help-btn" class="pulse-button fixed bottom-8 right-8 bg-gradient-to-r from-cyan-500 to-blue-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg z-40" data-tooltip="¿Necesitas ayuda?">
+        <i class="fas fa-question fa-lg"></i>
+    </button>
+
+    <!-- External JavaScript file -->
+    <script src="script.js"></script> 
+</body>
+</html>

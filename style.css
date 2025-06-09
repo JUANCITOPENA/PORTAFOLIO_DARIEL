@@ -1,0 +1,356 @@
+/* Custom Styles for Advanced Effects */
+:root {
+    --bg-dark: #0d1117;
+    --bg-card: #161b22; /* Used for project cards and category headers */
+    --bg-card-item: #1a202c; /* Slightly different for certificate items within a category */
+    --border-color: #30363d;
+    --primary-glow: #00aaff;
+    --secondary-glow: #ff00c8;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: #c9d1d9;
+}
+
+/* Animated Gradient Background */
+.animated-gradient-bg {
+    background: linear-gradient(-45deg, #0d1117, #1e2a38, #0d1117, #2c3e50);
+    background-size: 400% 400%;
+    animation: gradient-animation 20s ease infinite;
+}
+
+@keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Section Title Glow Effect */
+.section-title h2 {
+    position: relative;
+    display: inline-block;
+}
+
+.section-title h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-glow), var(--secondary-glow));
+    border-radius: 2px;
+    animation: pulse-glow 3s infinite alternate;
+}
+
+/* In your style.css */
+
+/* ... (other styles remain the same) ... */
+
+/* Animated Section Divider - FULL WIDTH (or close to it) */
+.animated-section-divider {
+    height: 4px; /* Thickness of the line */
+    width: 100%;  /* Make the line take the full width of its container */
+    /* If you want a very small margin on the sides, use padding on the parent
+       or slightly less than 100% width, e.g., width: 98%; margin: 4rem auto; */
+    margin: 4rem 0; /* Vertical spacing; 0 for horizontal margin as it's full width */
+    background: linear-gradient(
+        -45deg, 
+        #ee7752, /* Orange */
+        #e73c7e, /* Pink */
+        #23a6d5, /* Blue */
+        #23d5ab  /* Green */
+    );
+    background-size: 400% 400%;
+    animation: gradientDividerAnimation 15s ease infinite, 
+               revealFullWidthDividerAnimation 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards; /* Adjusted reveal animation */
+    border-radius: 2px;
+    transform: scaleX(0); /* Start scaled to 0 width for reveal animation */
+    transform-origin: left; /* Animate width from the left */
+    opacity: 1; /* Start with opacity 1, reveal will handle the visual appearance */
+}
+
+@keyframes gradientDividerAnimation { /* This animation remains the same */
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes revealFullWidthDividerAnimation {
+    0% {
+        transform: scaleX(0);
+    }
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+/* ... (other styles like .profile-image-wrapper, etc., remain the same) ... */
+
+/* Add or Modify these styles in your <style> tag */
+
+.profile-image-wrapper {
+    position: relative; /* Necessary for absolute positioning of the pseudo-element */
+    display: inline-block; /* To make the wrapper fit the image dimensions */
+    /* Ensure the wrapper itself doesn't clip the pseudo-element if it extends beyond */
+    /* No overflow: hidden on the wrapper itself for this effect */
+}
+
+img.profile-image {
+    display: block; /* Removes any extra space below the image */
+    /* Optional: slight rounding of corners for the image itself,
+       the fade effect will also follow this if the pseudo-element's radius is matched. */
+    border-radius: 0.375rem; /* e.g., Tailwind's rounded-md */
+    width: 100%; /* Make image fill the wrapper if wrapper has explicit size */
+    height: 100%; /* Make image fill the wrapper if wrapper has explicit size */
+    position: relative; /* To control stacking context if needed, though not strictly necessary here */
+    /* object-cover is good to keep if the wrapper has fixed dimensions
+       and you want the image to fill it without distortion. */
+}
+
+.profile-image-wrapper::after { /* Using ::after, ::before also works */
+    content: '';
+    position: absolute;
+    /* Make the pseudo-element slightly larger than the image
+       The amount of "inset" (negative values) determines the feathering width */
+    top: -15px;    /* Increase these for a wider, softer fade */
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+
+    /* Match the image's border-radius plus the feathering amount.
+       If image border-radius is 0.375rem (6px) and feather is 15px,
+       then approx 6px + 15px = 21px. Or use a slightly larger general radius. */
+    border-radius: calc(0.375rem + 15px); /* Or a fixed value like 20px for a softer corner on the fade */
+
+    /* The KEY part: A radial gradient that fades from transparent to your background color */
+    /* var(--bg-dark) should be your page's main background color */
+    background: radial-gradient(
+        ellipse at center,
+        rgba(13, 17, 23, 0) 60%,  /* Transparent in the center (over most of the image). Adjust 60% */
+                                  /* This color (13,17,23) should be the RGB of var(--bg-dark) */
+        var(--bg-dark) 95%        /* Fades to solid background color. Adjust 95% */
+    );
+    /* If your var(--bg-dark) is #0d1117, then rgba(13, 17, 23, 0) is correct. */
+
+    pointer-events: none; /* So the pseudo-element doesn't interfere with image interactions (like alt text hover) */
+    z-index: 1; /* Ensure it's on top of the image if image has z-index:0 or none */
+}
+@keyframes pulse-glow {
+    from { filter: drop-shadow(0 0 5px var(--primary-glow)); }
+    to { filter: drop-shadow(0 0 15px var(--secondary-glow)); }
+}
+
+/* Project Card Hover Effect & Base Style */
+.project-card {
+    background-color: var(--bg-card); /* Ensure project cards use this */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem; /* Consistent with other cards */
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(0, 170, 255, 0.2), transparent 40%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 20px var(--primary-glow);
+}
+
+.project-card:hover::before {
+    opacity: 1;
+}
+
+/* Project Card Image Container */
+.project-image-container {
+    width: 100%;
+    height: 12rem; /* Or h-48 in Tailwind (192px) */
+    background-color: #1f2937; /* A subtle dark background if image doesn't fill */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* No border-radius here, let the parent card handle it */
+}
+
+.project-image-container img.project-actual-image { /* More specific selector */
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Shows full image, letterboxed if necessary */
+}
+
+
+/* Modal Styles */
+.modal {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    /* Ensure modal is above other elements, z-index set in HTML/JS if needed */
+}
+
+.modal-content {
+    background-color: var(--bg-card); /* Consistent modal background */
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease;
+    max-width: 80vw; /* Max width for the modal content */
+    max-height: 90vh; /* Max height for the modal content */
+    border-radius: 0.5rem; /* Rounded corners for modal */
+    padding: 0.25rem; /* Small padding around the image inside modal if needed */
+}
+
+.modal-content img { /* Image inside the modal */
+    object-fit: contain;
+    max-width: 100%; /* Ensure image doesn't exceed modal content width */
+    max-height: calc(90vh - 50px - 0.5rem); /* Adjusted for close button and padding */
+    display: block; /* To remove any extra space below image */
+    margin: auto; /* Center image if it's smaller than modal content */
+    border-radius: 0.375rem; /* Slightly rounded corners for the image itself */
+}
+
+
+/* Tooltip Styles */
+[data-tooltip] {
+    position: relative;
+    cursor: pointer;
+}
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1f2937;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+    z-index: 100;
+}
+[data-tooltip]:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Flip Card for Skills */
+.flip-card { perspective: 1000px; }
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+.flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 0.5rem;
+    background-color: var(--bg-card); /* Ensure flip cards use this */
+    border: 1px solid var(--border-color); /* Add border to flip cards too */
+    display: flex; /* For centering content */
+    flex-direction: column; /* For icon and text layout */
+    align-items: center; /* For centering content */
+    justify-content: center; /* For centering content */
+    padding: 1rem; /* Add padding to flip cards */
+}
+.flip-card-back {
+    transform: rotateY(180deg);
+    /* You might want a slightly different background for the back if var(--bg-card) is too dark */
+    /* background-color: var(--bg-card-item); */
+}
+
+/* Help Button Pulse */
+@keyframes pulse-animation {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 170, 255, 0.7); }
+    70% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(0, 170, 255, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 170, 255, 0); }
+}
+.pulse-button {
+    animation: pulse-animation 2s infinite;
+}
+
+
+/* --- Certificate Category Accordion Styles --- */
+.certificate-category-header {
+    background-color: var(--bg-card); /* Main background for the category header block */
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem; /* Tailwind's rounded-lg */
+    margin-bottom: 1rem; /* Space between category blocks */
+    overflow: hidden; /* Important for the accordion effect */
+}
+
+.certificate-category-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 1.25rem; /* Tailwind p-4 px-5 */
+    text-align: left;
+    font-weight: 600; /* semibold */
+    color: #e2e8f0; /* A lighter text color for contrast on var(--bg-card) */
+    background-color: transparent; /* Button itself is transparent, parent .certificate-category-header has bg */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none; /* Remove default button border */
+    outline: none; /* Remove default button outline */
+}
+
+.certificate-category-toggle:hover {
+    background-color: #2d3748; /* A common hover color, adjust if needed */
+}
+
+.certificate-category-toggle .fa-chevron-down {
+    transition: transform 0.3s ease-in-out;
+}
+
+/* This class is added by JS when category is open */
+.certificate-category-toggle .fa-chevron-down.rotate-180 {
+    transform: rotate(180deg);
+}
+
+.certificate-items-container {
+    max-height: 0; /* Collapsed by default */
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+    /* No explicit background here, items will have their own if needed */
+    padding: 0 0.5rem 0.5rem 0.5rem; /* Padding for the container of items */
+}
+
+/* Individual certificate item card styling */
+.certificate-item-card {
+    background-color: var(--bg-card-item); /* Slightly different bg for distinction */
+    border: 1px solid var(--border-color);
+    border-radius: 0.375rem; /* Tailwind's rounded-md */
+    margin-bottom: 0.75rem; /* Space between certificate items */
+    /* overflow: hidden; /* If content inside might overflow */
+}
+.certificate-item-card .p-5 { /* Maintain consistent padding for content inside */
+    padding: 1.25rem;
+}
+/* If you had a border-t on the first item in the old accordion, it's not strictly needed here
+   as each item is its own card. If you want it, you'd apply it with JS to not the first child. */
+
+.certificate-item-card img.certificate-image {
+    border-radius: 0.25rem; /* Slightly rounded corners for the small certificate image */
+}
+
+/* Original .accordion-toggle class is now effectively .certificate-category-toggle */
+/* Original .accordion-content class is now effectively .certificate-items-container */

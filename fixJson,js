@@ -1,0 +1,28 @@
+const fs = require("fs");
+
+// Leer el archivo data.json
+fs.readFile("data.json", "utf8", (err, data) => {
+  if (err) {
+    console.error("Error al leer el archivo:", err);
+    return;
+  }
+
+  try {
+    // Reemplazar claves sin comillas y corregir el formato
+    const fixedData = data.replace(/(\w+):/g, '"$1":');
+
+    // Intentar convertir a JSON válido
+    const jsonData = JSON.parse(fixedData);
+
+    // Guardar el JSON corregido en un nuevo archivo
+    fs.writeFile("data_fixed.json", JSON.stringify(jsonData, null, 2), (err) => {
+      if (err) {
+        console.error("Error al guardar el archivo corregido:", err);
+      } else {
+        console.log("✅ Archivo `data_fixed.json` corregido con éxito!");
+      }
+    });
+  } catch (error) {
+    console.error("❌ Error al procesar el JSON:", error);
+  }
+});
